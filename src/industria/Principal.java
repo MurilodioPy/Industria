@@ -13,7 +13,7 @@ import java.util.*;
  * @author murilodio
  */
 // 3 – Deve conter uma classe Principal para executar as seguintes ações:
-public class Industria {
+public class Principal {
 
     public static void main(String[] args) {
         List<Funcionario> funcionarios = new ArrayList<>();//lista de funcionarios
