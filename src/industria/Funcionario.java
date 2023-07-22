@@ -42,7 +42,7 @@ public class Funcionario extends Pessoa {
     @Override
     public String toString() {
         //informação de valor numérico deve ser exibida no formatado com separador de milhar como ponto e decimal como vírgula
-        return super.toString() + ", Funcao: " + funcao + ", Salario: R$" + salario.toString().replace(".", ",");
+        return super.toString() + ", Funcao: " + funcao + ", \tSalario: R$" + salario.toString().replace(".", ",");
     }
 
 }

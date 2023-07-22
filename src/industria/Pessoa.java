@@ -41,6 +41,6 @@ public class Pessoa {
     public String toString() {
         //informação de data deve ser exibido no formato dd/mm/aaaa;
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return "Nome: " + nome + ", Data de Nascimento: " + dataNascimento.format(formato);
+        return "Nome: " + nome + ", \tData de Nascimento: " + dataNascimento.format(formato);
     }
 }

@@ -5,6 +5,7 @@
 package industria;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -52,7 +53,7 @@ public class Principal {
             BigDecimal aumento = funcionario.getSalario().multiply(new BigDecimal("0.10"));
             funcionario.setSalario(funcionario.getSalario().add(aumento));
         }
-        
+
         // 3.5 - Agrupar funcionários por função em um MAP
         Map<String, List<Funcionario>> funcionariosPorFuncao = new HashMap<>();
         List<Funcionario> funcao;
@@ -61,11 +62,12 @@ public class Principal {
             funcao.add(funcionario);
             funcionariosPorFuncao.put(funcionario.getFuncao(), funcao);
         }
-        
+
         // 3.6 - Imprimir os funcionários, agrupados por função
         System.out.println("Funcionarios agrupados por funcao: \n");
         for (Map.Entry<String, List<Funcionario>> entry : funcionariosPorFuncao.entrySet()) {
             System.out.println("Funcao: " + entry.getKey());
+            // percorre lista dentro do Map
             for (Funcionario funcionario : entry.getValue()) {
                 System.out.println("\t" + funcionario);
             }
@@ -78,15 +80,17 @@ public class Principal {
         int[] mesesAniversario = {10, 12};//meses de aniversario
         for (Funcionario funcionario : funcionarios) {
             int mesAniversario = funcionario.getDataNascimento().getMonthValue();
-            if(mesesAniversario[0] == mesAniversario || mesesAniversario[1] == mesAniversario){
-                System.out.println("Aniversariante: " + funcionario);
+            for (int i = 0; i < mesesAniversario.length; i++) {
+                if (mesesAniversario[i] == mesAniversario) {
+                    System.out.println("Aniversariante: " + funcionario);
+                }
             }
         }
 
         System.out.println("\n==============================================================================================\n");
 
         // 3.9 - Imprimir o funcionário com a maior idade
-        //pega o funcionario maisVelho dentro de funcionarios com base na comparação por data
+        // pega o funcionario maisVelho dentro de funcionarios com base na comparação por data
         Funcionario maisVelho = Collections.min(funcionarios, Comparator.comparing(Funcionario::getDataNascimento));
         int idadeMaisVelho = LocalDate.now().getYear() - maisVelho.getDataNascimento().getYear();
         System.out.println("O Funcionario mais velho eh: " + maisVelho.getNome() + ", Idade: " + idadeMaisVelho);
@@ -111,16 +115,16 @@ public class Principal {
         System.out.println("Total dos salarios dos funcionarios: R$" + totalSalarios.toString().replace(".", ","));
 
         System.out.println("\n==============================================================================================\n");
-        
+
         // 3.12 - Imprimir quantos salários mínimos ganha cada funcionário
         BigDecimal salarioMinimo = new BigDecimal("1212.00");
-        System.out.println("Salarios em relacao ao salario minimo: \n");
-        for (Funcionario funcionario : funcionarios){
-            BigDecimal salariosMinimos = funcionario.getSalario().divide(salarioMinimo, 2, BigDecimal.ROUND_DOWN);
+        System.out.println("Salarios em relacao ao salario minimo de: " + salarioMinimo + "\n");
+        for (Funcionario funcionario : funcionarios) {
+            BigDecimal salariosMinimos = funcionario.getSalario().divide(salarioMinimo, 2, RoundingMode.CEILING);
             System.out.println(funcionario.getNome() + ": " + salariosMinimos + " salario(s) minimos");
         }
-
-        System.out.println("\n==============================================================================================FIM\n");
         
+        System.out.println("\n==============================================================================================FIM\n");
+
     }
 }
