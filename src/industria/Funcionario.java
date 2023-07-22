@@ -13,7 +13,7 @@ import java.time.LocalDate;
  */
 // 2 – Classe Funcionário que estenda a classe Pessoa, com os atributos: salário (BigDecimal) e função (String).
 public class Funcionario extends Pessoa {
-
+    
     private BigDecimal salario;
     private String funcao;
 
@@ -42,6 +42,7 @@ public class Funcionario extends Pessoa {
     @Override
     public String toString() {
         //informação de valor numérico deve ser exibida no formatado com separador de milhar como ponto e decimal como vírgula
+        //Infelizmente não consegui colocar o separador de milhar com ponto
         return super.toString() + ", Funcao: " + funcao + ", \tSalario: R$" + salario.toString().replace(".", ",");
     }
 
